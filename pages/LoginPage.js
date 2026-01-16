@@ -10,6 +10,8 @@ class LoginPage {
       this.googleButton= page.getByRole('button', { name: 'Google' })
 
       this.selectEmail= page.getByText('giitanjalim@gmail.com')
+
+      this.enterEmail= page.getByRole('textbox', { name: /Email or phone/i })
     }
   
     // Page actions
@@ -33,8 +35,8 @@ class LoginPage {
       await this.googleButton.click();
     }
 
-    async clickSelectEmail() {
-      await this.selectEmail.click();
+    async enterEmailId() {
+      await this.enterEmail.type(process.env.TEST_EMAIL)
     }
 
   }

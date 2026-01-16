@@ -19,5 +19,7 @@ test('Valid Login', async ({ page }) => {
 
   await expect(page).toHaveTitle('Sign in - Google Accounts');
 
-  await loginPage.clickSelectEmail();
+  await loginPage.enterEmailId();
+
+
 });
