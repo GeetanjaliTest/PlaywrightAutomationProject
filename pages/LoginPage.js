@@ -1,4 +1,4 @@
-class HomePage {
+class LoginPage {
     constructor(page) {
       this.page = page;
   
@@ -6,6 +6,10 @@ class HomePage {
       this.loginOrRegisterButton = page.getByRole('button', {
         name: 'Login or register',
       });
+
+      this.googleButton= page.getByRole('button', { name: 'Google' })
+
+      this.selectEmail= page.getByText('giitanjalim@gmail.com')
     }
   
     // Page actions
@@ -24,7 +28,16 @@ class HomePage {
     async clickLoginOrRegister() {
       await this.loginOrRegisterButton.click();
     }
+
+    async clickGoogleBtn() {
+      await this.googleButton.click();
+    }
+
+    async clickSelectEmail() {
+      await this.selectEmail.click();
+    }
+
   }
   
-  module.exports = { HomePage };
+  module.exports = { LoginPage };
   

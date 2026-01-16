@@ -1,15 +1,23 @@
 const { test, expect } = require('@playwright/test');
-const { HomePage } = require('../pages/HomePage');
+const { LoginPage } = require('../pages/LoginPage');
 
 test('Valid Login', async ({ page }) => {
-  const homePage = new HomePage(page);
+  const loginPage = new LoginPage(page);
 
-  await homePage.navigate();
+  await loginPage.navigate();
 
-  const url = await homePage.getPageUrl();
+  const url = await loginPage.getPageUrl();
   console.log('URL is:', url);
 
   await expect(page).toHaveTitle('Regus Online Account');
 
-  await homePage.clickLoginOrRegister();
+  await loginPage.clickLoginOrRegister();
+
+  await expect(page).toHaveTitle('IWG Authentication');
+
+  await loginPage.clickGoogleBtn();
+
+  await expect(page).toHaveTitle('Sign in - Google Accounts');
+
+  await loginPage.clickSelectEmail();
 });
