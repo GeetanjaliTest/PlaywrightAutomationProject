@@ -1,13 +1,15 @@
 const { test, expect } = require('@playwright/test');
+const { HomePage } = require('../pages/HomePage');
 
-test.only('Valid Login', async ({ page }) => {
-  await page.goto('/');
+test('Valid Login', async ({ page }) => {
+  const homePage = new HomePage(page);
 
-  const url = page.url();
+  await homePage.navigate();
+
+  const url = await homePage.getPageUrl();
   console.log('URL is:', url);
 
   await expect(page).toHaveTitle('Regus Online Account');
 
-  await page.getByRole('button', { name: 'Login or register' }).click();
-
+  await homePage.clickLoginOrRegister();
 });
