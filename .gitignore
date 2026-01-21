@@ -8,3 +8,8 @@ node_modules/
 /playwright/.auth/
 # macOS
 .DS_Store
+scripts/encrypt-password.js
+.env
+.env.*
+
+

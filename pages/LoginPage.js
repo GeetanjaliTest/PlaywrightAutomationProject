@@ -1,3 +1,4 @@
+const { decrypt } = require('../utils/decrypt');
 class LoginPage {
     constructor(page) {
       this.page = page;
@@ -12,6 +13,10 @@ class LoginPage {
       this.selectEmail= page.getByText('giitanjalim@gmail.com')
 
       this.enterEmail= page.getByRole('textbox', { name: /Email or phone/i })
+
+      this.nextButton= page.getByText('Next', { exact: true });
+
+      this.passwordInput = page.locator('input[type="password"]');
     }
   
     // Page actions
@@ -37,6 +42,15 @@ class LoginPage {
 
     async enterEmailId() {
       await this.enterEmail.type(process.env.TEST_EMAIL)
+    }
+
+    async clickNextBtn() {
+      await this.nextButton.click();
+    }
+
+    async enterPassword() {
+      const password = decrypt(process.env.TEST_PASSWORD_ENC);
+      await this.passwordInput.fill(password);
     }
 
   }

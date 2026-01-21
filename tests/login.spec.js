@@ -1,5 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
+const { decrypt } = require('../utils/decrypt');
 
 test('Valid Login', async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -17,9 +18,12 @@ test('Valid Login', async ({ page }) => {
 
   await loginPage.clickGoogleBtn();
 
-  await expect(page).toHaveTitle('Sign in - Google Accounts');
+  await page.waitForSelector('input[type="email"]', { state: 'visible' });
 
   await loginPage.enterEmailId();
 
+  await loginPage.clickNextBtn();
+  
+  await loginPage.enterPassword(); 
 
 });
