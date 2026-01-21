@@ -52,7 +52,6 @@ class LoginPage {
       const password = decrypt(process.env.TEST_PASSWORD_ENC);
       await this.passwordInput.fill(password);
     }
-
   }
   
   module.exports = { LoginPage };
